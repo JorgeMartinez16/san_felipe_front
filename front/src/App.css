@@ -1,0 +1,71 @@
+/* global.css */
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #e0f7fa; /* Azul cielo muy suave */
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #00796b; /* Verde suave */
+}
+
+.container {
+  width: 80%;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+form {
+  background-color: #ffffff;
+  border: 1px solid #00796b;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #00796b;
+  border-radius: 5px;
+}
+
+button {
+  background-color: #00796b; /* Verde suave */
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #004d40; /* Verde más oscuro */
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table th, table td {
+  padding: 10px;
+  border: 1px solid #00796b;
+  text-align: left;
+}
+
+table th {
+  background-color: #00796b;
+  color: white;
+}
+
+table tr:nth-child(even) {
+  background-color: #e0f7fa;
+}
+
+.error {
+  color: red;
+}

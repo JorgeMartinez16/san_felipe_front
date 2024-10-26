@@ -14,6 +14,8 @@ import RegisterWashed from './routes/washed/RegisterWashed';
 import Payment from './routes/washed/Payment';
 import Service from './routes/service-offered/Service'; 
 import NotFound from './routes/NotFound'; 
+import LoginPage from './auth/LoginPage';
+
 
 
 const App = () => {
@@ -32,6 +34,7 @@ const App = () => {
       <Route path='/register-wash' element={<RegisterWashed/>}/>
       <Route path='/payment' element={<Payment/>}/>
       <Route path='*' element={<NotFound/>}/>
+      <Route path='login' element={<LoginPage/>}/>
   </Routes>
   );
 };

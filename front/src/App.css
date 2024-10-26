@@ -1,8 +1,9 @@
 /* global.css */
 
 body {
-  font-family: Arial, sans-serif;
-  background-color: #e0f7fa; /* Azul cielo muy suave */
+  font-family: roboto, sans-serif;
+  background-color: white; 
+  background-image: linear-gradient(to right, #6bff77, rgb(81, 220, 255));
   margin: 0;
   padding: 0;
 }
@@ -12,29 +13,31 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .container {
-  width: 80%;
+  width: 50%;
   margin: 0 auto;
   padding: 20px;
 }
 
 form {
+  width:60%;
   background-color: #ffffff;
-  border: 1px solid #00796b;
+  border: 1px solid #1589a1;
   border-radius: 10px;
   padding: 20px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 4px rgba(229, 4, 4, 0.1);
+  margin: 0 auto;
 }
 
 input, select, textarea {
-  width: 100%;
-  padding: 10px;
+  width: 99%;
+  padding: 8px;
   margin-bottom: 10px;
-  border: 1px solid #00796b;
-  border-radius: 5px;
+  border: 1px solid #0a82f9;
+  border-radius: 10px;
 }
 
 button {
-  background-color: #00796b; /* Verde suave */
+  background-color: #046ff1; /* Verde suave */
   color: white;
   padding: 10px 15px;
   border: none;
@@ -47,7 +50,7 @@ button:hover {
 }
 
 table {
-  width: 100%;
+  width: 90%;
   border-collapse: collapse;
 }
 
@@ -58,7 +61,7 @@ table th, table td {
 }
 
 table th {
-  background-color: #00796b;
+  background-color: #32ff4a;
   color: white;
 }
 

@@ -5,11 +5,10 @@ function LoginPage() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const navigate = useNavigate(); // Hook para redirigir
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(`Intentando iniciar sesión con usuario: ${username} y contraseña: ${password}`);
     
     try {
       const response = await fetch('http://localhost:8080/auth/login', {
@@ -24,18 +23,15 @@ function LoginPage() {
       });
 
       if (response.ok) {
-        const token = await response.text(); // El backend devuelve el token como texto
-        localStorage.setItem('token', token); // Guardar token en localStorage
+        const token = await response.text();
+        localStorage.setItem('token', token);
         alert('Login exitoso');
-        
-        navigate('/'); // Cambia la ruta según lo necesites
+        navigate('/'); 
       } else {
-        const errorText = await response.text(); // Capturar el texto del error
-        console.log(`Error de respuesta: ${errorText}`);
+        const errorText = await response.text();
         setError('Credenciales incorrectas');
       }
     } catch (error) {
-      console.error(`Error de conexión: ${error.message}`);
       setError('Error al iniciar sesión');
     }
   };
@@ -43,7 +39,7 @@ function LoginPage() {
   return (
     <div className="container">
       <h2>Iniciar Sesión</h2>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
+      {error && <p className="error">{error}</p>}
       <form onSubmit={handleSubmit}>
         <input
           type="text"

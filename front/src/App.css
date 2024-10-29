@@ -10,11 +10,11 @@ h2 {
   color: #2ce026; 
   text-align: center;
   margin-bottom: 20px;
-   font-family: "Lucida Console", "Courier New", monospace;
+  font-family: "Lucida Console", "Courier New", monospace;
 }
 
 .container {
-  max-width: 400px;
+  max-width: 700px;
   margin: 50px auto;
   padding: 20px;
   background-color: #ffffff;
@@ -57,7 +57,7 @@ input:focus {
 }
 
 button {
-  background-color: #2ce026; 
+  background-color: #00796b; 
   color: white;
   padding: 12px;
   border: none;
@@ -68,7 +68,7 @@ button {
 }
 
 button:hover {
-  background-color: #287affe3; 
+  background-color: #342b9a; 
   transform: translateY(-2px); 
 }
 
@@ -84,4 +84,103 @@ button:hover {
 
 .success {
   color: green;
+}
+
+.clients-container {
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  border: 3px solid #00796b; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.clients-container h2,
+.clients-container h3,
+.clients-container h4 {
+  color: #0b9efa;
+  font-family: "Lucida Console", "Courier New", monospace;
+}
+
+.clients-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.clients-table th, .clients-table td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: center;
+}
+
+.clients-table th {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.clients-table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.clients-table tr:hover {
+  background-color: #ddd;
+}
+
+.client-item button {
+  background-color: #ff6b6b;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.client-item button:hover {
+  background-color: #ff4d4d;
+}
+
+/* CSS para la lista de autos */
+.cars-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.cars-table th, .cars-table td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: center;
+}
+
+.cars-table th {
+  background-color: #4CAF50; /* Color del encabezado */
+  color: white;
+  font-family: "Lucida Console", "Courier New", monospace;
+}
+
+.cars-table tr:nth-child(even) {
+  background-color: #f2f2f2; /* Color de filas alternas */
+}
+
+.cars-table tr:hover {
+  background-color: #ddd; /* Color al pasar el ratón sobre la fila */
+}
+
+.cars-table .delete-button {
+  background-color: #ff6b6b; /* Color de botón de eliminar */
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.cars-table .delete-button:hover {
+  background-color: #ff4d4d; /* Color de botón al pasar el ratón */
 }

@@ -4,24 +4,31 @@ const Cars = () => {
   const [cars, setCars] = useState([]);
   const [newCar, setNewCar] = useState({ licencePlate: '', make: '', color: '' });
   const [searchPlate, setSearchPlate] = useState('');
-  const [searchResult, setSearchResult] = useState(null);
+  const [isSearching, setIsSearching] = useState(false);
   const [error, setError] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
+
+  // Recupera el token del localStorage
+  const token = localStorage.getItem('token');
 
   // Función para obtener la lista de autos
   const fetchCars = async () => {
     try {
-      const response = await fetch('http://localhost:8080/cars');
-      if (!response.ok) {
-        throw new Error('Error al obtener la lista de autos');
-      }
+      const response = await fetch('http://localhost:8080/cars', {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+        },
+      });
+      if (!response.ok) throw new Error('Error al obtener la lista de autos');
       const data = await response.json();
-      setCars(data); // Asegúrate de que `data` es un array de autos
+      setCars(data);
+      setIsSearching(false);
     } catch (err) {
       setError(err.message);
     }
   };
 
+  // Registrar un auto
   const handleRegisterCar = async (e) => {
     e.preventDefault();
     try {
@@ -29,6 +36,7 @@ const Cars = () => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
         },
         body: JSON.stringify(newCar),
       });
@@ -48,17 +56,23 @@ const Cars = () => {
     }
   };
 
+  // Buscar un auto por placa
   const handleSearchCar = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`http://localhost:8080/cars/${searchPlate}`);
+      const response = await fetch(`http://localhost:8080/cars/${searchPlate}`, {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+        },
+      });
       if (response.ok) {
         const car = await response.json();
-        setSearchResult(car);
+        setCars([car]);  // Mostrar solo el auto encontrado en la tabla
         setSuccessMessage('Auto encontrado con éxito');
+        setIsSearching(true);  // Cambiar a modo de búsqueda
         setError('');
       } else {
-        setSearchResult(null);
+        setCars([]);
         setError('No se encontró ningún auto con esa placa');
       }
     } catch (error) {
@@ -66,10 +80,14 @@ const Cars = () => {
     }
   };
 
+  // Eliminar un auto
   const handleDeleteCar = async (licencePlate) => {
     try {
       const response = await fetch(`http://localhost:8080/cars/${licencePlate}`, {
         method: 'DELETE',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+        },
       });
 
       if (response.ok) {
@@ -85,47 +103,63 @@ const Cars = () => {
     }
   };
 
-  // Función que se ejecuta al hacer clic en el botón "Listar Autos"
+  // Mostrar todos los autos después de una búsqueda
   const handleListCars = () => {
-    fetchCars(); // Llama a la función para obtener la lista de autos
+    fetchCars();
   };
 
   return (
-    <div>
+    <div className="container">
       <h2>Lista de Autos</h2>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-      {successMessage && <p style={{ color: 'green' }}>{successMessage}</p>}
+      {error && <p className="error">{error}</p>}
+      {successMessage && <p className="success">{successMessage}</p>}
 
-      <button onClick={handleListCars}>Listar Autos</button> {/* Botón para listar autos */}
+      {/* Botones para listar todos o buscar */}
+      <div>
+        <button onClick={handleListCars}>Listar Todos</button>
+        <form onSubmit={handleSearchCar} style={{ display: 'inline-block', marginLeft: '10px' }}>
+          <input
+            type="text"
+            placeholder="Buscar por Placa"
+            value={searchPlate}
+            onChange={(e) => setSearchPlate(e.target.value)}
+            required
+          />
+          <button type="submit">Buscar</button>
+        </form>
+      </div>
 
-      <ul>
-        {cars.map((car) => (
-          <li key={car.licencePlate}>
-            {car.licencePlate} - {car.make} - {car.color}
-            <button onClick={() => handleDeleteCar(car.licencePlate)}>Eliminar</button>
-          </li>
-        ))}
-      </ul>
-
-      <h3>Buscar Auto por Placa</h3>
-      <form onSubmit={handleSearchCar}>
-        <input
-          type="text"
-          placeholder="Placa"
-          value={searchPlate}
-          onChange={(e) => setSearchPlate(e.target.value)}
-          required
-        />
-        <button type="submit">Buscar</button>
-      </form>
-      {searchResult && (
-        <div>
-          <h4>Resultado de Búsqueda:</h4>
-          <p>
-            Placa: {searchResult.licencePlate} - Modelo: {searchResult.make} - Color: {searchResult.color}
-          </p>
-        </div>
-      )}
+      {/* Tabla de autos */}
+      <table className="cars-table">
+        <thead>
+          <tr>
+            <th>Placa</th>
+            <th>Modelo</th>
+            <th>Color</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          {cars.length > 0 ? (
+            cars.map((car) => (
+              <tr key={car.licencePlate}>
+                <td>{car.licencePlate}</td>
+                <td>{car.make}</td>
+                <td>{car.color}</td>
+                <td>
+                  <button onClick={() => handleDeleteCar(car.licencePlate)}>Eliminar</button>
+                </td>
+              </tr>
+            ))
+          ) : (
+            <tr>
+              <td colSpan="4" style={{ textAlign: 'center' }}>
+                {isSearching ? 'No se encontró ningún auto con esa placa' : 'No hay autos registrados'}
+              </td>
+            </tr>
+          )}
+        </tbody>
+      </table>
 
       <h3>Registrar Nuevo Auto</h3>
       <form onSubmit={handleRegisterCar}>

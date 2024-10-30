@@ -1,40 +1,66 @@
 body {
-  font-family: 'Roboto', sans-serif;
-  background-color: #f7f9fc; 
-  background-image: linear-gradient(to right, #68bbff, rgb(30, 77, 234));
+  font-family: "Roboto", sans-serif;
+  background-image: url("https://img.freepik.com/fotos-premium/coche-negro-carretera-render-3d-e-ilustracion_37416-493.jpg?w=900");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   margin: 0;
   padding: 0;
 }
 
 h2 {
-  color: #2ce026; 
+  color: #2ce026;
   text-align: center;
   margin-bottom: 20px;
   font-family: "Lucida Console", "Courier New", monospace;
 }
 
+h3 {
+  color: #2ce026;
+  text-align: left;
+  margin-bottom: 20px;
+  font-family: "Lucida Console", "Courier New", monospace;
+}
+
 .container {
+  width: 40%;
   max-width: 700px;
   margin: 50px auto;
   padding: 20px;
   background-color: #ffffff;
   border-radius: 10px;
-  border: 3px solid #00796b; 
+  border: 3px solid #fa25fa;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  position: relative; 
-  overflow: hidden; 
+  overflow: auto;
 }
 
-.container::before {
+/* .container::before {
   content: "";
   position: absolute;
   top: -10px;
   left: -10px;
   right: -10px;
   bottom: -10px;
-  border: 2px dashed #32ff4a; 
+  border: 2px solid #ff3fcc;
   border-radius: 15px;
-  pointer-events: none; 
+  pointer-events: none;
+  
+}  */
+
+.otherContainer{
+  overflow: auto;
+  display: flex;
+  flex: 1;
+  justify-content:center;
+  width: 100%;
+}
+
+.routerContainer{
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  height: 100dvh;
+  overflow: hidden;
 }
 
 form {
@@ -52,27 +78,28 @@ input {
 
 input:focus {
   border-color: #00796b;
-  box-shadow: 0 0 5px rgba(0, 121, 107, 0.5); 
+  box-shadow: 0 0 5px rgba(0, 121, 107, 0.5);
   outline: none;
 }
 
 button {
-  background-color: #00796b; 
+  background-color: #4caf50;
   color: white;
   padding: 12px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   font-size: 16px;
-  transition: background-color 0.3s, transform 0.2s; 
+  transition: background-color 0.3s, transform 0.2s;
 }
 
 button:hover {
-  background-color: #342b9a; 
-  transform: translateY(-2px); 
+  background-color: #88ff19;
+  transform: translateY(-2px);
 }
 
-.error, .success {
+.error,
+.success {
   text-align: center;
   margin-top: 10px;
   font-weight: bold;
@@ -92,7 +119,7 @@ button:hover {
   padding: 20px;
   background-color: #ffffff;
   border-radius: 10px;
-  border: 3px solid #00796b; 
+  border: 3px solid #00796b;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   text-align: center;
 }
@@ -110,14 +137,15 @@ button:hover {
   margin-top: 10px;
 }
 
-.clients-table th, .clients-table td {
+.clients-table th,
+.clients-table td {
   padding: 10px;
   border: 1px solid #ddd;
   text-align: center;
 }
 
 .clients-table th {
-  background-color: #4CAF50;
+  background-color: #4caf50;
   color: white;
 }
 
@@ -151,14 +179,15 @@ button:hover {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.cars-table th, .cars-table td {
+.cars-table th,
+.cars-table td {
   padding: 10px;
   border: 1px solid #ddd;
   text-align: center;
 }
 
 .cars-table th {
-  background-color: #4CAF50; /* Color del encabezado */
+  background-color: #4caf50; /* Color del encabezado */
   color: white;
   font-family: "Lucida Console", "Courier New", monospace;
 }
@@ -182,5 +211,48 @@ button:hover {
 }
 
 .cars-table .delete-button:hover {
+  background-color: #ff4d4d; /* Color de botón al pasar el ratón */
+}
+
+/* Estilo para la tabla de empleados */
+.employees-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.employees-table th,
+.employees-table td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: center;
+}
+
+.employees-table th {
+  background-color: #4caf50; /* Color del encabezado */
+  color: white;
+  font-family: "Lucida Console", "Courier New", monospace;
+}
+
+.employees-table tr:nth-child(even) {
+  background-color: #f2f2f2; /* Color de filas alternas */
+}
+
+.employees-table tr:hover {
+  background-color: #ddd; /* Color al pasar el ratón sobre la fila */
+}
+
+.employees-table .delete-button {
+  background-color: #ff6b6b; /* Color de botón de eliminar */
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.employees-table .delete-button:hover {
   background-color: #ff4d4d; /* Color de botón al pasar el ratón */
 }

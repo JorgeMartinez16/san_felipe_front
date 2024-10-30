@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Routes, Route } from 'react-router-dom';
 import './App.css';
@@ -12,30 +13,37 @@ import RegisterClient from './routes/client/RegisterClient';
 import WashedRecord from './routes/washed/WashedRecord';
 import RegisterWashed from './routes/washed/RegisterWashed';
 import Payment from './routes/washed/Payment';
-import Service from './routes/service-offered/Service'; 
-import NotFound from './routes/NotFound'; 
+import Service from './routes/service-offered/Service';
+import NotFound from './routes/NotFound';
 import LoginPage from './auth/LoginPage';
-
-
+import NavBar from './components/NavBar';
+import Footer from './components/Footer';
 
 const App = () => {
   return (
-    <Routes>
-      <Route path="/register" element={<RegisterPage />} />
-      <Route path="/register-service" element={<RegisterService />} />
-      <Route path='/register-car' element={<RegisterCar />}/>
-      <Route path='/cars' element={<Cars/>}/>
-      <Route path='/services' element={<Service/>}/>
-      <Route path='/employees' element={<Employees/>}/>
-      <Route path='/register-employees' element={<RegisterEmployees/>}/>
-      <Route path='/client' element={<Client/>}/>
-      <Route path='/register-client' element={<RegisterClient/>}/>
-      <Route path='/washed-record' element={<WashedRecord/>}/>
-      <Route path='/register-wash' element={<RegisterWashed/>}/>
-      <Route path='/payment' element={<Payment/>}/>
-      <Route path='*' element={<NotFound/>}/>
-      <Route path='login' element={<LoginPage/>}/>
-  </Routes>
+    <div className="routerContainer">
+      <NavBar /> {/* Menú de navegación agregado */}
+      <div className="otherContainer">
+      <Routes>
+        <Route path="/register" element={<RegisterPage />} />
+        <Route path="/register-service" element={<RegisterService />} />
+        <Route path='/services' element={<Service/>}/>
+        <Route path='/register-car' element={<RegisterCar />}/>
+        <Route path='/cars' element={<Cars/>}/>
+        <Route path='/employees' element={<Employees/>}/>
+        <Route path='/register-employees' element={<RegisterEmployees/>}/>
+        <Route path='/client' element={<Client/>}/>
+        <Route path='/register-client' element={<RegisterClient/>}/>
+        <Route path='/washed-record' element={<WashedRecord/>}/>
+        <Route path='/register-wash' element={<RegisterWashed/>}/>
+        <Route path='/payment' element={<Payment/>}/>
+        <Route path='/login' element={<LoginPage/>}/>
+        <Route path='*' element={<NotFound/>}/>
+      </Routes>
+      </div>
+      
+      <Footer /> {}
+    </div>
   );
 };
 
